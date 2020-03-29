@@ -58,3 +58,61 @@ class Vector(object):
             return self.multiply_by_scalar(1/mag)
         except ZeroDivisionError:
             raise Exception('Cannot normalize the vector %s' % self.__str__)
+
+    def dot_product(self, vector):
+        if(self.dimension != vector.dimension):
+            raise ValueError("Vectors must be the same lenght")
+        res = 0
+        for i in range(self.dimension):
+            res += self.coordinates[i] * vector.coordinates[i]
+        return res
+
+    def angle(self, vector):
+        if(self.dimension != vector.dimension):
+            raise ValueError("Vectors must be the same lenght")
+
+        dotProduct = self.dot_product(vector)
+        magnitudSelf = self.magnitude()
+        magnitudV = vector.magnitude()
+
+        rad = math.acos(dotProduct/(magnitudSelf * magnitudV))
+        angle = math.degrees(rad)
+        return rad, angle
+    
+    def is_orthogonal(self, vector, tolerance=1e-10):
+        '''
+            Checking for Orthoganility: We say that 2 vectors are orthogonal if they are perpendicular
+            to each other. i.e. the dot product of the two vectors is zero.
+        '''
+        return abs(self.dot_product(vector)) < tolerance
+
+    def is_zero(self, tolerance=1e-10):
+        return self.magnitude() < tolerance
+
+    def is_parallel(self, vector):
+        '''
+            Checking for Parallelism: We say that 2 vectors are parallel Two vectors A and B are parallel 
+            if and only if they are scalar multiples of one another. 
+            
+            A = k B , k is a constant not equal to zero.
+            Let A = (Ax , Ay) and B = (Bx , By)
+            
+            A and B are parallel if and only if A = k B
+            (Ax , Ay) = k (Bx , By) = (k Ax , k By)
+            Ax = k Bx and Ay = k By or Ax / Bx = k and Ay / By = k
+
+            Condition under which vectors A = (Ax , Ay) and B = (Bx , By) are parallel is given by
+            Ax / Bx = Ay / By or Ax By = Bx Ay
+        '''
+        if(self.dimension != vector.dimension):
+            raise ValueError("Vectors must be the same lenght")
+        
+        
+        if self.is_zero() or vector.is_zero():
+            return True
+
+        rand, angle = self.angle(vector)
+
+        return (  angle == 0 or angle == 180 )
+
+        
