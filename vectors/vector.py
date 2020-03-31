@@ -47,6 +47,9 @@ class Vector(object):
         return Vector(res)
     
     def magnitude(self):
+        '''
+            Magnitude or length of a vector also known as modulus
+        '''
         res = 0
         for i in range(self.dimension):
             res += self.coordinates[i] ** 2
@@ -60,6 +63,10 @@ class Vector(object):
             raise Exception('Cannot normalize the vector %s' % self.__str__)
 
     def dot_product(self, vector):
+        '''
+            Dot Product is a scalar number
+            r.s = ri.si + rj.sj ... 
+        '''
         if(self.dimension != vector.dimension):
             raise ValueError("Vectors must be the same lenght")
         res = 0
