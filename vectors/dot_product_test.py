@@ -27,3 +27,38 @@ b2 = Vector([-2,4])
 r = Vector([3,4])
 nev = r.basis_change(b1, b2)
 print("New basis: {0}".format(nev))
+
+b1 = Vector([1,1])
+b2 = Vector([1,-1])
+r = Vector([5,-1])
+nev = r.basis_change(b1, b2)
+print("Change Basis exercise 01: {0}".format(nev))
+
+b1 = Vector([3,4])
+b2 = Vector([4,-3])
+r = Vector([10,-5])
+nev = r.basis_change(b1, b2)
+print("Change Basis exercise 02: {0}".format(nev))
+
+b1 = Vector([-3,1])
+b2 = Vector([1,3])
+r = Vector([2,2])
+nev = r.basis_change(b1, b2)
+print("Change Basis exercise 03: {0}".format(nev))
+
+
+b1 = Vector([2,1,0])
+b2 = Vector([1,-2,-1])
+b3 = Vector([-1,2,-5])
+r = Vector([1,1,1])
+nev = r.basis_change(b1, b2, b3)
+print("Change Basis exercise 04: {0}".format(nev))
+
+
+b1 = Vector([1,0,0,0])
+b2 = Vector([0,2,-1,0])
+b3 = Vector([0,1,2,0])
+b4 = Vector([0,0,0,3])
+r = Vector([1,1,2,3])
+nev = r.basis_change(b1, b2, b3, b4)
+print("Change Basis exercise 04: {0}".format(nev))

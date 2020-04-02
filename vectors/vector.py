@@ -132,20 +132,17 @@ class Vector(object):
         vret = vector.multiply_by_scalar(rsdot/rrdot)
         return vret
 
-    def basis_change(self, b1, b2):
+    def basis_change(self, *basis_vectors):
         '''
             Change this vector to another basis vectors using dot products.
             re.b1/mag(b1)**2
             re.b1/mag(b1)**2
         '''
-        b1mag = sum([x**2 for x in b1.coordinates])
-        b2mag = sum([x**2 for x in b2.coordinates])
-        #scalarb1 = self.dot_product(b1)/b1.magnitude() ** 2
-        #scalarb2 = self.dot_product(b2)/b2.magnitude() ** 2
-        scalarb1 = self.dot_product(b1)/b1mag
-        scalarb2 = self.dot_product(b2)/b2mag
-
-        return Vector([scalarb1, scalarb2])
+        coors = []
+        for b in basis_vectors:
+            bmag = sum([x**2 for x in b.coordinates])
+            coors.append(self.dot_product(b)/bmag)
+        return Vector(coors)
 
 
         
