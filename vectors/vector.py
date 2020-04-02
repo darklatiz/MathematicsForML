@@ -53,6 +53,7 @@ class Vector(object):
         res = 0
         for i in range(self.dimension):
             res += self.coordinates[i] ** 2
+        print("Vector Magnitud representation: math.sqrt({0})".format(res))
         return math.sqrt(res)
     
     def direction_vector(self):
@@ -110,5 +111,41 @@ class Vector(object):
         rand, angle = self.angle(vector)
 
         return (  angle == 0 or angle == 180 )
+
+    def scalar_projection(self, vector):
+        '''
+            In mathematics, the scalar projection of a vector a on (or onto) a vector b, 
+            also known as the scalar resolute of a in the direction of b.
+
+            s = a.b/magnitude(b)
+        '''
+
+        dot = self.dot_product(vector)
+        return dot/vector.magnitude()
+
+    def vector_projection(self, vector):
+        '''
+            this is not fine
+        '''
+        rsdot = self.dot_product(vector)
+        rrdot = self.dot_product(self)
+        vret = vector.multiply_by_scalar(rsdot/rrdot)
+        return vret
+
+    def basis_change(self, b1, b2):
+        '''
+            Change this vector to another basis vectors using dot products.
+            re.b1/mag(b1)**2
+            re.b1/mag(b1)**2
+        '''
+        b1mag = sum([x**2 for x in b1.coordinates])
+        b2mag = sum([x**2 for x in b2.coordinates])
+        #scalarb1 = self.dot_product(b1)/b1.magnitude() ** 2
+        #scalarb2 = self.dot_product(b2)/b2.magnitude() ** 2
+        scalarb1 = self.dot_product(b1)/b1mag
+        scalarb2 = self.dot_product(b2)/b2mag
+
+        return Vector([scalarb1, scalarb2])
+
 
         
