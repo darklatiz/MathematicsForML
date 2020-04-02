@@ -1,4 +1,4 @@
-from vector import Vector
+from vectors.vector import Vector
 
 v1 = Vector([1,3,4,2])
 print("The dot product is {0}".format(v1.magnitude()))

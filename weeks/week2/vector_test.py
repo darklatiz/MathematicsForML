@@ -1,4 +1,4 @@
-from vector import Vector
+from vectors.vector import Vector
 import math
 
 vector1 = Vector([8.218,-9.341])

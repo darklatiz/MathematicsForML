@@ -1,4 +1,4 @@
-from vector import Vector
+from vectors.vector import Vector
 
 '''
 A ship travels with velocity given by [1,2], with current flowing 
