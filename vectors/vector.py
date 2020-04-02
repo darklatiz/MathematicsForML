@@ -126,10 +126,11 @@ class Vector(object):
     def vector_projection(self, vector):
         '''
             this is not fine
+            r.s/r.r (vector r)
         '''
         rsdot = self.dot_product(vector)
-        rrdot = self.dot_product(self)
-        vret = vector.multiply_by_scalar(rsdot/rrdot)
+        rrdot = self.dot_product(Vector(self.coordinates))
+        vret = self.multiply_by_scalar(rsdot/rrdot)
         return vret
 
     def basis_change(self, *basis_vectors):
