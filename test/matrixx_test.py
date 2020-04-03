@@ -1,0 +1,5 @@
+from matrixx.matriz import Matrixx
+
+m = [[1,2,3], [4,5,6], [7,8,9]]
+m1 = Matrixx(m)
+print(m1)
