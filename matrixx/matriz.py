@@ -26,7 +26,14 @@ class Matrixx(object):
         print(self.column_vectors)
 
     def __str__(self):
-        return "Matrixx: {0}".format(self.matrixx)
+        '''
+        :return: String representation of the matrix
+        '''
+        str_cols = [str(vc) for vc in self.column_vectors]
+        str_rows = [str(vr) for vr in self.row_vectors]
+
+        str1 = "Matrix: {0} \n Row Vectors: {1} \n Column Vectors: {2}"
+        return str1.format(self.matrixx, str_rows, str_cols)
 
     def __mul__(self, other):
         '''
