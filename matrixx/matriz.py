@@ -29,11 +29,20 @@ class Matrixx(object):
         '''
         :return: String representation of the matrix
         '''
+
         str_cols = [str(vc) for vc in self.column_vectors]
         str_rows = [str(vr) for vr in self.row_vectors]
+        str_matrix = ''
+        for vrow in self.row_vectors:
+            str_matrix = str_matrix + str(vrow) + "\n"
+        str1 = "Matrix:\n{0}\nRow Vectors: {1}\nColumn Vectors: {2}"
+        return str1.format(str_matrix, str_rows, str_cols)
 
-        str1 = "Matrix: {0} \n Row Vectors: {1} \n Column Vectors: {2}"
-        return str1.format(self.matrixx, str_rows, str_cols)
+    def get_column_count(self):
+        return self.column_count
+
+    def get_row_count(self):
+        return self.row_count
 
     def __mul__(self, other):
         '''
@@ -49,4 +58,15 @@ class Matrixx(object):
         :param other: matrix
         :return: The resultant matrix
         '''
+
+        if self.column_count != other.get_row_count():
+            raise AttributeError("The dimension of both matrices do not check")
+        matrixx_result =[]
+        for row_vector in self.row_vectors:
+            result = []
+            for col_vector in other.column_vectors:
+                result.append(row_vector.dot_product(col_vector))
+            matrixx_result.append(result)
+
+        return matrixx_result
 
