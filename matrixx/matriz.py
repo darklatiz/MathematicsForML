@@ -67,8 +67,8 @@ class Matrixx(object):
         m_result = []
         for vector_row in self.row_vectors:
             r_result = []
-            for col in range(self.column_vectors):
-                r_result.append(vector_row[col] * scalar)
+            for col in range(self.column_count):
+                r_result.append(vector_row.coordinates[col] * scalar)
             m_result.append(r_result)
 
         return Matrixx(m_result)

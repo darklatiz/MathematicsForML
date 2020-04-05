@@ -53,3 +53,9 @@ m3 = Matrixx([[1,2,3],[4,5,6]])
 m4 = Matrixx([[1,2,3],[4,5,6]])
 r = m3 + m4
 print(r)
+
+print("----------------------------")
+print("Matrix Multiplication by Scalar ***********")
+m3 = Matrixx([[1,2,3],[4,5,6]])
+print(m3.scalar_multiplication(0.5))
+print(m3.scalar_multiplication(2.5))
