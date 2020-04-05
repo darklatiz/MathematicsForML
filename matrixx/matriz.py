@@ -22,9 +22,6 @@ class Matrixx(object):
                 nums.append(data[i][j])
             self.column_vectors.append(Vector(nums))
 
-        print(self.row_vectors)
-        print(self.column_vectors)
-
     def __str__(self):
         '''
         :return: String representation of the matrix
@@ -37,12 +34,6 @@ class Matrixx(object):
             str_matrix = str_matrix + str(vrow) + "\n"
         str1 = "Matrix:\n{0}\nRow Vectors: {1}\nColumn Vectors: {2}"
         return str1.format(str_matrix, str_rows, str_cols)
-
-    def get_column_count(self):
-        return self.column_count
-
-    def get_row_count(self):
-        return self.row_count
 
     def __mul__(self, other):
         '''
@@ -59,8 +50,8 @@ class Matrixx(object):
         :return: The resultant matrix
         '''
 
-        if self.column_count != other.get_row_count():
-            raise AttributeError("The dimension of both matrices do not check")
+        if self.column_count != other.row_count:
+            raise Exception("The dimension of both matrices do not check")
         matrixx_result =[]
         for row_vector in self.row_vectors:
             result = []
