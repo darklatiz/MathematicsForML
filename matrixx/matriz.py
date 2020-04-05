@@ -35,6 +35,20 @@ class Matrixx(object):
         str1 = "Matrix:\n{0}\nRow Vectors: {1}\nColumn Vectors: {2}"
         return str1.format(str_matrix, str_rows, str_cols)
 
+    def __eq__(self, other):
+        if self.row_count != other.row_count or self.column_count != other.column_count:
+            return False
+
+        for row in range(self.row_count):
+            if self.row_vectors[row] != other.row_vectors[row]:
+                return False
+
+        for col in range(self.column_count):
+            if self.column_vectors[col] != other.column_vectors[col]:
+                return False
+
+        return True
+
     def __mul__(self, other):
         '''
         The number of columns of the 1st matrix must equal the number of rows of the 2nd matrix.
