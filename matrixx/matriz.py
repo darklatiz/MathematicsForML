@@ -43,11 +43,35 @@ class Matrixx(object):
             if self.row_vectors[row] != other.row_vectors[row]:
                 return False
 
+        #This loop for might not be needed
         for col in range(self.column_count):
             if self.column_vectors[col] != other.column_vectors[col]:
                 return False
 
         return True
+
+    def __add__(self, other):
+        if self.row_count != other.row_count or self.column_count != other.column_count:
+            raise Exception("Both Matrices MUST have same dimension")
+
+        m_result = []
+        for row in range(self.row_count):
+            r_result = []
+            for col in range(self.column_count):
+                r_result.append(self.row_vectors[row].coordinates[col] + other.row_vectors[row].coordinates[col])
+            m_result.append(r_result)
+
+        return Matrixx(m_result)
+
+    def scalar_multiplication(self, scalar):
+        m_result = []
+        for vector_row in self.row_vectors:
+            r_result = []
+            for col in range(self.column_vectors):
+                r_result.append(vector_row[col] * scalar)
+            m_result.append(r_result)
+
+        return Matrixx(m_result)
 
     def __mul__(self, other):
         '''
@@ -73,5 +97,5 @@ class Matrixx(object):
                 result.append(row_vector.dot_product(col_vector))
             matrixx_result.append(result)
 
-        return matrixx_result
+        return Matrixx(matrixx_result)
 
