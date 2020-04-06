@@ -107,7 +107,7 @@ class Matrixx(object):
 
         #we invert columns and rows
         rows, cols = (self.column_count, self.row_count)
-        mtrix = [[0] * cols for i in range(rows)]
+        mtrix = self.__create_2d_array(rows,cols)
 
         # iterate through rows
         for i in range(len(self.matrixx)):
@@ -116,3 +116,6 @@ class Matrixx(object):
                 mtrix[j][i] = self.matrixx[i][j]
 
         return Matrixx(mtrix)
+
+    def __create_2d_array(self, rows, cols):
+        return [[0] * cols for i in range(rows)]
