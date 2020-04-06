@@ -99,3 +99,20 @@ class Matrixx(object):
 
         return Matrixx(matrixx_result)
 
+    def transpose(self):
+        '''
+        To take the transpose of a matrix, simply switch the rows and column of a matrix.
+        :return:
+        '''
+
+        #we invert columns and rows
+        rows, cols = (self.column_count, self.row_count)
+        mtrix = [[0] * cols for i in range(rows)]
+
+        # iterate through rows
+        for i in range(len(self.matrixx)):
+        # iterate through columns
+            for j in range(len(self.matrixx[0])):
+                mtrix[j][i] = self.matrixx[i][j]
+
+        return Matrixx(mtrix)
