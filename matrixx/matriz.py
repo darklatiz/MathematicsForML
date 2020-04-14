@@ -1,10 +1,12 @@
 import math
 from vectors.vector import Vector
 
+
 class Matrixx(object):
     '''
         This class tries to impalement the main operations of Matrix (linear algebra) concepts.
     '''
+
     def __init__(self, data):
         super().__init__()
         self.row_count = len(data)
@@ -43,7 +45,7 @@ class Matrixx(object):
             if self.row_vectors[row] != other.row_vectors[row]:
                 return False
 
-        #This loop for might not be needed
+        # This loop for might not be needed
         for col in range(self.column_count):
             if self.column_vectors[col] != other.column_vectors[col]:
                 return False
@@ -90,7 +92,7 @@ class Matrixx(object):
 
         if self.column_count != other.row_count:
             raise Exception("The dimension of both matrices do not check")
-        matrixx_result =[]
+        matrixx_result = []
         for row_vector in self.row_vectors:
             result = []
             for col_vector in other.column_vectors:
@@ -105,13 +107,13 @@ class Matrixx(object):
         :return:
         '''
 
-        #we invert columns and rows
+        # we invert columns and rows
         rows, cols = (self.column_count, self.row_count)
-        mtrix = self.__create_2d_array(rows,cols)
+        mtrix = self.__create_2d_array(rows, cols)
 
         # iterate through rows
         for i in range(len(self.matrixx)):
-        # iterate through columns
+            # iterate through columns
             for j in range(len(self.matrixx[0])):
                 mtrix[j][i] = self.matrixx[i][j]
 
