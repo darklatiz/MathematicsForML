@@ -5,6 +5,9 @@ import math
 
 class VectorOperations(object):
 
+    DOT_PRODUCT_ELEMENT_WISE = 'element_wise'
+    DOT_PRODUCT_TRANSPOSE_WISE = 'transpose_wise'
+
     def __init__(self):
         print("Vector operations initialized")
 
@@ -63,6 +66,10 @@ class VectorOperations(object):
             return geek.array(data)
         else:
             raise Exception("Vector cannot be created, we need a list to do it [a,b,c,d,...]")
+
+    def create_rand_vector(self, num_elements):
+        return geek.random.rand(num_elements)
+
 
 
 if __name__ == '__main__':
