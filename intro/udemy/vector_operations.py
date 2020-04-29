@@ -18,9 +18,21 @@ class VectorOperations(object):
             return self.__dot_product_numpy_way(va, vb)
 
     def outter_product(self, va, vb, type_outter_product=NUMPY_WISE):
+        va_size = geek.size(va)
+        vb_size = geek.size(vb)
+        if va_size != vb_size:
+            raise Exception("Dimension (size) must agree")
+
         if type_outter_product == NUMPY_WISE:
             return geek.outer(va, vb)
         elif type_outter_product == TRANSPOSE_WISE:
+            vbT = geek.transpose(vb)
+            F = geek.zeros((va_size, vb_size))
+            # this is not vey optimal since we have two for loops
+            for i in range(va_size):
+                for j in range(vb_size):
+                    F[i, j] = va[i] * vb[j]
+            return F
 
     def __dot_product_for_loop(self, vector, other_vector):
         res = 0
@@ -48,8 +60,8 @@ class VectorOperations(object):
             dot = self.__dot_product_numpy_way(va, vb)
             magv1 = self.magnitude(va)
             magv2 = self.magnitude(vb)
-            pre = dot/(magv1 * magv2)
-            angle_rad =  math.acos(pre)
+            pre = dot / (magv1 * magv2)
+            angle_rad = math.acos(pre)
             angle_degrees = math.degrees(angle_rad)
             return angle_rad, angle_degrees
 
@@ -63,7 +75,6 @@ class VectorOperations(object):
     def escalar_multiplication(self, v1, scalar):
         return v1 * scalar
 
-
     def create_vector(self, data):
         if type(data) is list:
             return geek.array(data)
@@ -72,41 +83,3 @@ class VectorOperations(object):
 
     def create_rand_vector(self, num_elements):
         return geek.random.rand(num_elements)
-
-
-
-if __name__ == '__main__':
-    ops = VectorOperations()
-    v = ops.create_vector([1, 2, 3, 4])
-    print("Norm ||v|| = {0}".format(ops.magnitude(v, ELEMENT_WISE)))
-    print("Norm ||v|| = {0}".format(ops.magnitude(v, NUMPY_WISE)))
-    print("Norm ||v|| = {0}".format(ops.magnitude(v, LA_NORM_WISE)))
-
-    v1 = ops.create_vector([16, -2, 4])
-    v2 = ops.create_vector([.5, 2, -1])
-    rad, degress = ops.angle_between_vectors(v1, v2)
-    print("Rad = {0} , Degrees= {1}".format(rad, degress))
-    print("Dot product = {0}".format(ops.dot_product(v1, v2)))
-    print("Are orthogonal: {0}".format(ops.is_orthogonal(v1, v2)))
-
-
-    print("***************************** Angles ****************")
-    print("*****************************************************")
-    va = ops.create_vector([1, -2])
-    vb = ops.create_vector([2, 3])
-    vc = ops.create_vector([0, 2])
-
-    print("va Vs vb")
-    print("Dot Product vaTvb = {0}".format(ops.dot_product(va, vb)))
-    rad, ang = ops.angle_between_vectors(va, vb)
-    print("Angle va Vb = {0}".format(ang))
-
-    print("va Vs vc")
-    print("Dot Product vaTvc = {0}".format(ops.dot_product(va, vc)))
-    rad, ang = ops.angle_between_vectors(va, vc)
-    print("Angle va Vb = {0}".format(ang))
-
-    print("vb Vs vc")
-    print("Dot Product vaTvb = {0}".format(ops.dot_product(vb, vc)))
-    rad, ang = ops.angle_between_vectors(vb, vc)
-    print("Angle va Vb = {0}".format(ang))
