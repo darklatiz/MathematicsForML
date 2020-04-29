@@ -11,6 +11,8 @@ class VectorOperations(object):
     def dot_product(self, va, vb, type_dot_product='element_wise'):
         if type_dot_product == 'element_wise':
             return self.__dot_product_for_loop(va, vb)
+        elif type_dot_product == 'transpose_wise':
+            return geek.transpose(va) @ vb
         else:
             return self.__dot_product_numpy_way(va, vb)
 
@@ -24,7 +26,7 @@ class VectorOperations(object):
         return res
 
     def __dot_product_numpy_way(self, vector, other_vector):
-        return geek.dot(vector, other_vector)
+        return vector @ other_vector
 
     def magnitude(self, vector, type_dot_product='element_wise'):
         if type_dot_product == 'element_wise':
@@ -51,6 +53,9 @@ class VectorOperations(object):
             return True
         else:
             return False
+
+    def escalar_multiplication(self, v1, scalar):
+        return v1 * scalar
 
 
     def create_vector(self, data):
