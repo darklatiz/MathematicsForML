@@ -1,23 +1,26 @@
 import numpy as geek
 from numpy import linalg as LA
+from intro.udemy.constants import *
 import math
 
 
 class VectorOperations(object):
 
-    DOT_PRODUCT_ELEMENT_WISE = 'element_wise'
-    DOT_PRODUCT_TRANSPOSE_WISE = 'transpose_wise'
-
     def __init__(self):
         print("Vector operations initialized")
 
-    def dot_product(self, va, vb, type_dot_product='element_wise'):
-        if type_dot_product == 'element_wise':
+    def dot_product(self, va, vb, type_dot_product=ELEMENT_WISE):
+        if type_dot_product == ELEMENT_WISE:
             return self.__dot_product_for_loop(va, vb)
-        elif type_dot_product == 'transpose_wise':
+        elif type_dot_product == TRANSPOSE_WISE:
             return geek.transpose(va) @ vb
         else:
             return self.__dot_product_numpy_way(va, vb)
+
+    def outter_product(self, va, vb, type_outter_product=NUMPY_WISE):
+        if type_outter_product == NUMPY_WISE:
+            return geek.outer(va, vb)
+        elif type_outter_product == TRANSPOSE_WISE:
 
     def __dot_product_for_loop(self, vector, other_vector):
         res = 0
@@ -31,17 +34,17 @@ class VectorOperations(object):
     def __dot_product_numpy_way(self, vector, other_vector):
         return vector @ other_vector
 
-    def magnitude(self, vector, type_dot_product='element_wise'):
-        if type_dot_product == 'element_wise':
+    def magnitude(self, vector, type_dot_product=ELEMENT_WISE):
+        if type_dot_product == ELEMENT_WISE:
             sum_squared = self.__dot_product_for_loop(vector, vector)
             return math.sqrt(sum_squared)
-        elif type_dot_product == 'numpy_dot_way':
+        elif type_dot_product == NUMPY_WISE:
             return math.sqrt(self.__dot_product_numpy_way(vector, vector))
         else:
             return LA.norm(vector)
 
-    def angle_between_vectors(self, va, vb, type='geometric'):
-        if type == 'geometric':
+    def angle_between_vectors(self, va, vb, type_calculation=GEOMETRIC_WISE):
+        if type_calculation == 'geometric':
             dot = self.__dot_product_numpy_way(va, vb)
             magv1 = self.magnitude(va)
             magv2 = self.magnitude(vb)
@@ -75,9 +78,9 @@ class VectorOperations(object):
 if __name__ == '__main__':
     ops = VectorOperations()
     v = ops.create_vector([1, 2, 3, 4])
-    print("Norm ||v|| = {0}".format(ops.magnitude(v, 'element_wise')))
-    print("Norm ||v|| = {0}".format(ops.magnitude(v, 'numpy_dot_way')))
-    print("Norm ||v|| = {0}".format(ops.magnitude(v, 'LA-norm')))
+    print("Norm ||v|| = {0}".format(ops.magnitude(v, ELEMENT_WISE)))
+    print("Norm ||v|| = {0}".format(ops.magnitude(v, NUMPY_WISE)))
+    print("Norm ||v|| = {0}".format(ops.magnitude(v, LA_NORM_WISE)))
 
     v1 = ops.create_vector([16, -2, 4])
     v2 = ops.create_vector([.5, 2, -1])

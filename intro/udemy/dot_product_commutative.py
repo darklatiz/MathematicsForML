@@ -17,3 +17,4 @@ v3 = v_ops.create_vector([1,2])
 v4 = v_ops.create_vector([3,4])
 print("Dot Product v3 T v4 = {0}".format(v_ops.dot_product(v3, v4)))
 print("Dot Product v4 T v3 = {0}".format(v_ops.dot_product(v4, v3, "transpose_wise")))
+
