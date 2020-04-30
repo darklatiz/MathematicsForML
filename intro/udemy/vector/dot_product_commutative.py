@@ -1,4 +1,4 @@
-from intro.udemy.vector_operations import VectorOperations
+from intro.udemy.vector.vector_operations import VectorOperations
 # Is the dot product commutative
 # a*b = b*a ??
 

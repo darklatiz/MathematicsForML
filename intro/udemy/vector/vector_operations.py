@@ -17,7 +17,7 @@ class VectorOperations(object):
         else:
             return self.__dot_product_numpy_way(va, vb)
 
-    def outter_product(self, va, vb, type_outter_product=NUMPY_WISE):
+    def outer_product(self, va, vb, type_outter_product=NUMPY_WISE):
         va_size = geek.size(va)
         vb_size = geek.size(vb)
         if va_size != vb_size:
@@ -31,7 +31,7 @@ class VectorOperations(object):
             # this is not vey optimal since we have two for loops
             for i in range(va_size):
                 for j in range(vb_size):
-                    F[i, j] = va[i] * vb[j]
+                    F[i, j] = va[i] * vbT[j]
             return F
 
     def __dot_product_for_loop(self, vector, other_vector):
@@ -83,3 +83,20 @@ class VectorOperations(object):
 
     def create_rand_vector(self, num_elements):
         return geek.random.rand(num_elements)
+
+    def crete_zero_vector(self, dimension):
+        return geek.zeros(dimension)
+
+    def cross_product(self, va, vb, type_calculation=ELEMENT_WISE):
+        va_size = geek.size(va)
+        vb_size = geek.size(vb)
+        if va_size != 3 and vb_size != 3:
+            raise Exception("Either va or vb is not a 3D vector")
+        res = self.crete_zero_vector(3)
+        if type_calculation == ELEMENT_WISE:
+            res[0] = va[1] * vb[2] - va[2] * vb[1]
+            res[1] = va[0] * vb[2] - va[2] * vb[0]
+            res[2] = va[0] * vb[1] - va[1] * vb[0]
+            return res
+        elif type_calculation == NUMPY_WISE:
+            return geek.cross(va, vb)

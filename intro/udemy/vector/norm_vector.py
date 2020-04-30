@@ -1,4 +1,4 @@
-from intro.udemy.vector_operations import VectorOperations
+from intro.udemy.vector.vector_operations import VectorOperations
 from intro.udemy.constants import *
 ops = VectorOperations()
 v = ops.create_vector([1, 2, 3, 4])
