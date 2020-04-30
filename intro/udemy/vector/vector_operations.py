@@ -2,6 +2,7 @@ import numpy as geek
 from numpy import linalg as LA
 from intro.udemy.constants import *
 import math
+import matplotlib.pyplot as plt
 
 
 class VectorOperations(object):
@@ -100,3 +101,16 @@ class VectorOperations(object):
             return res
         elif type_calculation == NUMPY_WISE:
             return geek.cross(va, vb)
+
+    def unit_vector(self, va):
+        return self.escalar_multiplication(va, 1/self.magnitude(va))
+
+    def plot_vectors(self, va, vb):
+        origin = [0], [0]  # origin point
+        V = geek.array([va, vb])
+        fig, ax = plt.subplots()
+        ax.quiver(*origin, V[:, 0], V[:, 1], color=['r', 'b', 'g'], scale = 18)
+        ax.set_title('Ploting the unit vector')
+        plt.grid()
+        ax.set_aspect('equal')
+        plt.show()
