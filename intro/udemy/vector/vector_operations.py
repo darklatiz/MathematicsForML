@@ -49,10 +49,12 @@ class VectorOperations(object):
 
     def magnitude(self, vector, type_dot_product=ELEMENT_WISE):
         if type_dot_product == ELEMENT_WISE:
-            sum_squared = self.__dot_product_for_loop(vector, vector)
+            sum_squared = self.dot_product(vector, vector, ELEMENT_WISE)
             return math.sqrt(sum_squared)
         elif type_dot_product == NUMPY_WISE:
-            return math.sqrt(self.__dot_product_numpy_way(vector, vector))
+            return math.sqrt(self.dot_product(vector, vector, NUMPY_WISE))
+        elif type_dot_product == TRANSPOSE_WISE:
+            return math.sqrt(self.dot_product(vector, vector, TRANSPOSE_WISE))
         else:
             return LA.norm(vector)
 
@@ -82,8 +84,11 @@ class VectorOperations(object):
         else:
             raise Exception("Vector cannot be created, we need a list to do it [a,b,c,d,...]")
 
-    def create_rand_vector(self, num_elements):
-        return geek.random.rand(num_elements)
+    def create_rand_vector(self, num_elements, data_type='float'):
+        if data_type == 'int':
+            return geek.random.randint(1, 100, num_elements)
+        else:
+            return geek.random.rand(num_elements)
 
     def crete_zero_vector(self, dimension):
         return geek.zeros(dimension)
