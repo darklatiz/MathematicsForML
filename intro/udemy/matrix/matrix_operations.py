@@ -55,6 +55,12 @@ class MatrixOperations(object):
 
     def __is_data_an_nd_array(self, data):
         return type(data) is not geek.ndarray
+    
+    def identity_matrix(self, size):
+        return geek.identity(size)
+    
+    def shift(self, M, scalar):
+        return self.sum(M, scalar * self.identity_matrix(M.shape[0]))
 
 
 if __name__ == '__main__':
@@ -81,9 +87,12 @@ if __name__ == '__main__':
     M_res = m_ops.sum([[1, 2, 3, 4], [1, 2, 3, 4]], [[1, 2, 3, 4], [1, 2, 3, 4]])
 
     #numpy array
-    K = m_ops.create_random_matrix(4, 5, INT_TYPE, -100, 100)
+    K = m_ops.create_random_matrix(5, 5, INT_TYPE, -100, 100)
     K1 = m_ops.create_random_matrix(4, 5)
-    M_res01 = m_ops.sum(K, K1)
+    M_res01 = m_ops.sum(K, K)
     M_res02 = m_ops.subtract(K, K)
     print("Sum: {0}".format(M_res01))
     print("Sub: {0}".format(M_res02))
+
+    shift = m_ops.shift(K, 2)
+    print("Shift: {0}".format(shift))

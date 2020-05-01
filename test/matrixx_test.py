@@ -47,7 +47,7 @@ print("Matrix Addition ***********")
 try:
     r = m3 + m4
 except Exception as ex:
-    print("Error in matriz addition: {0}".format(ex))
+    print("Error in matrix addition: {0}".format(ex))
 
 m3 = Matrixx([[1,2,3],[4,5,6]])
 m4 = Matrixx([[1,2,3],[4,5,6]])
