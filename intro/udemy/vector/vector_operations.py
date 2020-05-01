@@ -84,9 +84,9 @@ class VectorOperations(object):
         else:
             raise Exception("Vector cannot be created, we need a list to do it [a,b,c,d,...]")
 
-    def create_rand_vector(self, num_elements, data_type='float'):
+    def create_rand_vector(self, num_elements, data_type='default', low=1, upper=100):
         if data_type == 'int':
-            return geek.random.randint(1, 100, num_elements)
+            return geek.random.randint(low, upper, num_elements)
         else:
             return geek.random.rand(num_elements)
 
@@ -108,13 +108,13 @@ class VectorOperations(object):
             return geek.cross(va, vb)
 
     def unit_vector(self, va):
-        return self.escalar_multiplication(va, 1/self.magnitude(va))
+        return self.escalar_multiplication(va, 1 / self.magnitude(va))
 
     def plot_vectors(self, va, vb):
         origin = [0], [0]  # origin point
         V = geek.array([va, vb])
         fig, ax = plt.subplots()
-        ax.quiver(*origin, V[:, 0], V[:, 1], color=['r', 'b', 'g'], scale = 18)
+        ax.quiver(*origin, V[:, 0], V[:, 1], color=['r', 'b', 'g'], scale=18)
         ax.set_title('Ploting the unit vector')
         plt.grid()
         ax.set_aspect('equal')
