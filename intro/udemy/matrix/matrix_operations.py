@@ -60,6 +60,10 @@ class MatrixOperations(object):
         return geek.identity(size)
     
     def shift(self, M, scalar):
+        """
+            Method to shift a matrix
+            A + λI = C
+        """
         return self.sum(M, scalar * self.identity_matrix(M.shape[0]))
 
 

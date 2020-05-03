@@ -1,8 +1,7 @@
 # PACKAGE
 # Run this cell first once to load the dependancies.
 import numpy as np
-from numpy.linalg import norm, inv
-from numpy import transpose
+from numpy.linalg import inv
 # from readonly.bearNecessities import *
 
 # GRADED FUNCTION
@@ -11,7 +10,7 @@ from numpy import transpose
 # In this function, you will return the transformation matrix T,
 # having built it out of an orthonormal basis set E that you create from Bear's Basis
 # and a transformation matrix in the mirror's coordinates TE.
-from matrixx.gram_schmit import gsBasis
+from intro.coursera.matrixx import gsBasis
 
 
 def build_reflection_matrix(bearBasis) : # The parameter bearBasis is a 2×2 matrix that is passed to the function.
@@ -29,7 +28,6 @@ def build_reflection_matrix(bearBasis) : # The parameter bearBasis is a 2×2 mat
 
 # First load Pyplot, a graph plotting library.
 %matplotlib inline
-import matplotlib.pyplot as plt
 
 # This is the matrix of Bear's basis vectors.
 # (When you've done the exercise once, see what happns when you change Bear's basis.)

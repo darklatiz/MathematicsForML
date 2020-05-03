@@ -1,4 +1,4 @@
-from vectors.vector import Vector
+from intro.coursera.vectors import Vector
 
 '''
 A ship travels with velocity given by [1,2], with current flowing 

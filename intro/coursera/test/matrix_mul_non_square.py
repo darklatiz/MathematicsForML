@@ -1,4 +1,4 @@
-from matrixx.matriz import Matrixx
+from intro.coursera.matrixx.matriz import Matrixx
 
 m1 = Matrixx([[1,2,3],[4,0,1]])
 m2 = Matrixx([[1,1,0],[0,1,1],[1,0,1]])

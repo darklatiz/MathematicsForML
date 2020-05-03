@@ -1,4 +1,4 @@
-from matrixx.matriz import Matrixx
+from intro.coursera.matrixx.matriz import Matrixx
 
 m = [[1,2,3], [4,5,6]]
 m01 = [[7,8], [9,10], [11,12]]
