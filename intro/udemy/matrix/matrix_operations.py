@@ -7,6 +7,12 @@ class MatrixOperations(object):
     def __init__(self):
         print("Matriz operations initialized")
 
+    def dot(self, m_1, m_2, type_dot=NUMPY_WISE):
+        if type_dot == NUMPY_WISE:
+            return geek.dot(m_1, m_2)
+        else:
+            return m_1 @ m_2
+
     def create_random_matrix(self, m_rows, n_cols, data_type='default', low=1, upper=100):
         if data_type == 'int':
             return geek.random.randint(low, upper, size=(m_rows, n_cols))
