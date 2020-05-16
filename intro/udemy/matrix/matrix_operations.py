@@ -79,6 +79,9 @@ class MatrixOperations(object):
 
         return scalar * m_1
 
+    def equality(self, M1, M2):
+        return geek.array_equal(M1, M2)
+
 
 
 
