@@ -72,6 +72,15 @@ class MatrixOperations(object):
         """
         return self.sum(M, scalar * self.identity_matrix(M.shape[0]))
 
+    def scalar_multiplication(self, scalar, m_1):
+        m_is_not_matriz = self.__is_data_an_nd_array(m_1)
+        if m_is_not_matriz:
+            m_1 = self.create_matrix(m_1)
+
+        return scalar * m_1
+
+
+
 
 if __name__ == '__main__':
     m_ops = MatrixOperations()
