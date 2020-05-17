@@ -83,12 +83,29 @@ class MatrixOperations(object):
         return geek.array_equal(M1, M2)
 
     def transpose(self, M, hermitian = False):
+        MC = None
         if not self.__is_valid_matrix(M):
             MC = self.create_matrix(M)
-        if not hermitian:
-            return MC.T
+            if not hermitian:
+                return MC.T
+            else:
+                return MC.conj().T
         else:
-            return MC.conj().T
+            if not hermitian:
+                return M.T
+            else:
+                return M.conj().T
+
+    def diagonal(self, M):
+        MC = None
+        if not self.__is_valid_matrix(M):
+            MC = self.create_matrix(M)
+            return MC.diagonal()
+        else:
+            return M.diagonal()
+
+    def trace(self, M):
+        return sum(self.diagonal(M))
 
 if __name__ == '__main__':
     m_ops = MatrixOperations()
