@@ -32,13 +32,13 @@ class MatrixOperations(object):
         :param M_2: Matrix 2
         :return: The sume of M_1 + M_2
         """
-        m1_is_not_ndarray = self.__is_data_an_nd_array(M_1)
-        m2_is_not_ndarray = self.__is_data_an_nd_array(M_2)
+        m1_is_ndarray = self.__is_valid_matrix(M_1)
+        m2_is_ndarray = self.__is_valid_matrix(M_2)
 
-        if m1_is_not_ndarray:
+        if not m1_is_ndarray:
             M_1 = self.create_matrix(M_1)
 
-        if m2_is_not_ndarray:
+        if not m2_is_ndarray:
             M_2 = self.create_matrix(M_2)
         return M_1 + M_2
 
@@ -49,18 +49,18 @@ class MatrixOperations(object):
         :param M_2: Matrix 2
         :return: Subtracted Matrix
         """
-        m1_is_not_ndarray = self.__is_data_an_nd_array(M_1)
-        m2_is_not_ndarray = self.__is_data_an_nd_array(M_2)
+        m1_is_ndarray = self.__is_valid_matrix(M_1)
+        m2_is_ndarray = self.__is_valid_matrix(M_2)
 
-        if m1_is_not_ndarray:
+        if not m1_is_ndarray:
             M_1 = self.create_matrix(M_1)
 
-        if m2_is_not_ndarray:
+        if not m2_is_ndarray:
             M_2 = self.create_matrix(M_2)
         return M_1 - M_2
 
-    def __is_data_an_nd_array(self, data):
-        return type(data) is not geek.ndarray
+    def __is_valid_matrix(self, data):
+        return type(data) is geek.ndarray
     
     def identity_matrix(self, size):
         return geek.identity(size)
@@ -73,14 +73,20 @@ class MatrixOperations(object):
         return self.sum(M, scalar * self.identity_matrix(M.shape[0]))
 
     def scalar_multiplication(self, scalar, m_1):
-        m_is_not_matriz = self.__is_data_an_nd_array(m_1)
-        if m_is_not_matriz:
+        m_is_matriz = self.__is_valid_matrix(m_1)
+        if not m_is_matriz:
             m_1 = self.create_matrix(m_1)
 
         return scalar * m_1
 
     def equality(self, M1, M2):
         return geek.array_equal(M1, M2)
+
+    def transpose(self, M):
+        if not self.__is_valid_matrix(M):
+            M = self.create_matrix(M)
+
+        return M.T
 
 
 
